@@ -11,17 +11,19 @@ EMP_WAGE_RATE_PER_HR=20
 randomCheck=$((RANDOM%3))
 
 # CHECKING CONDITION AND GETTING EMPLOYEE HOURS
-if [ $IS_FULLTIME -eq $randomCheck ]
-then
-	employeeHrs=8
+case $randomCheck in
+		$IS_FULLTIME)
+				employeeHrs=8
+					;;
 
-elif [ $IS_PARTTIME -eq $randomCheck ]
-then
-	employeeHrs=4
+		$IS_PARTTIME)
+				employeeHrs=4
+					;;
 
-else
-	employeeHrs=0
-fi
+		*)
+				employeeHrs=0
+					;;
+esac
 
 # CALCULATING EMPLOYEE DAILY WAGE
 employeeDailyWage=$(($employeeHrs*$EMP_WAGE_RATE_PER_HR))

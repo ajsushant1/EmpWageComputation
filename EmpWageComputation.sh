@@ -7,14 +7,17 @@ IS_PARTTIME=1
 IS_FULLTIME=2
 EMP_WAGE_RATE_PER_HR=20
 NUM_OF_WORKING_DAYS=20
+MAX_HRS_IN_MONTH=100
 
 # VARIABLES
+totalEmpHrs=0
 totalEmpSalary=0
+totalWorkingDays=0
 
 # LOOP FOR CALCULATING WAGES FOR MONTH AND TOTAL EMPLOYEE SALARY
-for (( day=1; day<=$NUM_OF_WORKING_DAYS; day++ ))
+while [[ $totalEmpHrs -lt $MAX_HRS_IN_MONTH && $totalWorkingDays -lt $NUM_OF_WORKING_DAYS ]]
 do
-
+	((totalWorkingDays++))
 # GENERATING RANDOM VALUE
 	randomCheck=$((RANDOM%3))
 
@@ -33,9 +36,10 @@ do
 					;;
 	esac
 
-# CALCULATING EMPLOYEE DAILY WAGE
-employeeDailyWage=$(($employeeHrs*$EMP_WAGE_RATE_PER_HR))
+# CALCULATING EMPLOYEE TOTAL WORING HOURS
+totalEmpHrs=$(($totalEmpHrs+$employeeHrs))
+done
 
 # CALCULATING EMPLOYEE TOTAL SALARY
-totalEmpSalary=$(($totalEmpSalary+$employeeDailyWage))
-done
+totalEmpSalary=$(($totalEmpHrs*$EMP_WAGE_RATE_PER_HR))
+

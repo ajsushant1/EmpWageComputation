@@ -14,15 +14,9 @@ totalEmpHrs=0
 totalEmpSalary=0
 totalWorkingDays=0
 
-# LOOP FOR CALCULATING WAGES FOR MONTH AND TOTAL EMPLOYEE SALARY
-while [[ $totalEmpHrs -lt $MAX_HRS_IN_MONTH && $totalWorkingDays -lt $NUM_OF_WORKING_DAYS ]]
-do
-	((totalWorkingDays++))
-# GENERATING RANDOM VALUE
-	randomCheck=$((RANDOM%3))
-
-# CHECKING CASE AND GETTING EMPLOYEE HOURS
-	case $randomCheck in
+# FUNCTION TO GET EMPLOYEE WORKING HOURS
+function getWorkingHours(){
+	case $1 in
 		$IS_FULLTIME)
 				employeeHrs=8
 					;;
@@ -35,9 +29,14 @@ do
 				employeeHrs=0
 					;;
 	esac
+	echo $employeeHrs
+}
 
-# CALCULATING EMPLOYEE TOTAL WORING HOURS
-totalEmpHrs=$(($totalEmpHrs+$employeeHrs))
+# LOOP TO CALCULATING TOTAL EMPLOYEE WORKING  HOURS FOR MONTH
+while [[ $totalEmpHrs -lt $MAX_HRS_IN_MONTH && $totalWorkingDays -lt $NUM_OF_WORKING_DAYS ]]
+do
+   ((totalWorkingDays++))
+	totalEmpHrs=$(($totalEmpHrs+$( getWorkingHours $((RANDOM%3)) )))
 done
 
 # CALCULATING EMPLOYEE TOTAL SALARY

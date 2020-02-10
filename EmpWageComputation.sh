@@ -14,6 +14,9 @@ totalEmpHrs=0
 totalEmpSalary=0
 totalWorkingDays=0
 
+# DECLARING DICTIONARY
+declare -A empDailyWage
+
 # FUNCTION TO GET EMPLOYEE WORKING HOURS
 function getWorkingHours(){
 	case $1 in
@@ -50,5 +53,6 @@ do
 	totalEmpSalary=$(($totalEmpSalary+${empDailyWage[$totalWorkingDays]}))
 done
 
-#PRINTING ARRAY OF DAILY WAGE
+#PRINTING DICTIONARY OF DAILY WAGE
 echo "Daily Wage :"${empDailyWage[@]}
+echo "All keys :"${!empDailyWage[@]}

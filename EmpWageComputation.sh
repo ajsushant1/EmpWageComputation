@@ -14,11 +14,9 @@ randomCheck=$((RANDOM%3))
 if [ $IS_FULLTIME -eq $randomCheck ]
 then
 	employeeHrs=8
-
 elif [ $IS_PARTTIME -eq $randomCheck ]
 then
 	employeeHrs=4
-
 else
 	employeeHrs=0
 fi

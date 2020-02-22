@@ -22,13 +22,13 @@ function getWorkingHours(){
 	case $1 in
 		$IS_FULLTIME)
 			employeeHrs=8
-					;;
+				;;
 		$IS_PARTTIME)
 			employeeHrs=4
-					;;
+				;;
 		*)
 			employeeHrs=0
-					;;
+				;;
 	esac
 	echo $employeeHrs
 }

@@ -21,15 +21,13 @@ declare -A empDailyWage
 function getWorkingHours(){
 	case $1 in
 		$IS_FULLTIME)
-				employeeHrs=8
+			employeeHrs=8
 					;;
-
 		$IS_PARTTIME)
-				employeeHrs=4
+			employeeHrs=4
 					;;
-
 		*)
-				employeeHrs=0
+			employeeHrs=0
 					;;
 	esac
 	echo $employeeHrs
@@ -49,7 +47,6 @@ do
 	workHours="$( getWorkingHours $((RANDOM%3)) )"
 	totalEmpHrs=$(($totalEmpHrs+$workHours))
 	empDailyWage[$totalWorkingDays]="$( calcDailyWage $workHours )"
-
 	totalEmpSalary=$(($totalEmpSalary+${empDailyWage[$totalWorkingDays]}))
 done
 
